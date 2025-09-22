@@ -2180,7 +2180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.005
-  bombPrefab: {fileID: 7447837740801496852, guid: a18e97c27483441b5a7c7271503505a6, type: 3}
+  bombPrefab: {fileID: 6893254598022364040, guid: a18e97c27483441b5a7c7271503505a6, type: 3}
 --- !u!1 &1566250454
 GameObject:
   m_ObjectHideFlags: 0

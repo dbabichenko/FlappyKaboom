@@ -43,6 +43,8 @@ public class BomberController : MonoBehaviour
         {
             Instantiate(bombPrefab, gameObject.transform.position, gameObject.transform.rotation);
         }
+
+        
        
 
     }

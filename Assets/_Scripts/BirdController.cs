@@ -71,20 +71,27 @@ public class BirdController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Obstacle")
         {
-            // Destroy(gameObject);
-
-            // Play the death scream
-            // gameObject.GetComponent<AudioSource>().Play();
-
-            // Move bird to its initial position
-            // gameObject.transform.position = initPosition;
-
-            // On collision, subtract 25 points
+            
+            // On collision with obstacle, subtract 25 points
             int score = int.Parse(scoreText.text);
             score = score - 25;
             scoreText.text = score.ToString();
 
             if(score <= 0)
+            {
+                Die();
+            }
+        }
+        if(collision.gameObject.tag == "Bomb")
+        {
+
+            // On collision with bomb, subtract 10 points
+            int score = int.Parse(scoreText.text);
+            score = score - 10;
+            scoreText.text = score.ToString();
+            Destroy(collision.gameObject);
+
+            if (score <= 0)
             {
                 Die();
             }
