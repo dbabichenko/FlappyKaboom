@@ -1,9 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class BirdController : MonoBehaviour
 {
     public float speed = 0.5f;
+    public TMP_Text scoreText;
+
     private Vector2 initPosition;
+
 
     void Start()
     {
@@ -70,10 +74,31 @@ public class BirdController : MonoBehaviour
             // Destroy(gameObject);
 
             // Play the death scream
-            gameObject.GetComponent<AudioSource>().Play();
+            // gameObject.GetComponent<AudioSource>().Play();
 
             // Move bird to its initial position
-            gameObject.transform.position = initPosition;
+            // gameObject.transform.position = initPosition;
+
+            // On collision, subtract 25 points
+            int score = int.Parse(scoreText.text);
+            score = score - 25;
+            scoreText.text = score.ToString();
+
+            if(score <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    private void Die()
+    {
+        // Play the death scream
+        gameObject.GetComponent<AudioSource>().Play();
+
+        // Flip the bird upside down
+        gameObject.GetComponent<SpriteRenderer>().flipY = true;
+
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 }
