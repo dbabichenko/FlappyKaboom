@@ -6,7 +6,10 @@ public class BirdController : MonoBehaviour
     public float speed = 0.5f;
     public TMP_Text scoreText;
 
+    private bool goLeft = true;
+
     private Vector2 initPosition;
+    private bool facingRight = true; // assume starting facing right
 
 
     void Start()
@@ -27,7 +30,11 @@ public class BirdController : MonoBehaviour
 
             // Assign new position vector to game object
             gameObject.transform.position = pos;
-                
+            if (!facingRight)
+            {
+                Flip();
+            }
+
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -40,6 +47,11 @@ public class BirdController : MonoBehaviour
             // Assign new position vector to game object
             gameObject.transform.position = pos;
 
+            if (facingRight)
+            {
+                Flip();
+            }
+
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -51,6 +63,7 @@ public class BirdController : MonoBehaviour
 
             // Assign new position vector to game object
             gameObject.transform.position = pos;
+
 
         }
         else if (Input.GetKey(KeyCode.DownArrow))
@@ -107,5 +120,11 @@ public class BirdController : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().flipY = true;
 
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
     }
 }
